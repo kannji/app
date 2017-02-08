@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kannji</string>
+    <string name="title_activity_multiple_choice">MultipleChoice</string>
 </resources>
