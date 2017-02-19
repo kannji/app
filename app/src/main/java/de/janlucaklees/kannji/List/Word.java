@@ -28,7 +28,7 @@ public class Word extends Fragment {
         readingView.setTextSize(20);
         readingView.setText(reading);
 
-        String translation = getArguments().getString(WordList.BUNDLE_READING_KEY);
+        String translation = getArguments().getString(WordList.BUNDLE_TRANSLATION_KEY);
 
         TextView translationView = (TextView) rootView.findViewById(R.id.translation);
         translationView.setTextSize(20);
