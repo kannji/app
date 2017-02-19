@@ -1,26 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.janlucaklees.kannji.MainActivity">
+    android:orientation="horizontal">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_startAddingWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_weight="0"
+        android:onClick="startAddingWords"
+        android:text="@string/btn_startAddingWords" />
 
     <Button
         android:id="@+id/btn_startQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_startAddingWords"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:onClick="startQuiz"
-        android:text="Start Quiz" />
+        android:text="@string/start_quiz" />
+
+    <EditText
+        android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_startQuiz"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0"
+        android:hint="@string/edit_message" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:layout_weight="0"
+        android:text="@string/message" />
+
+    <Button
+        android:id="@+id/btn_viewWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_startAddingWords"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:onClick="viewWords"
+        android:text="@string/btn_viewWords" />
+
 </RelativeLayout>
