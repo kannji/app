@@ -1,4 +1,4 @@
-package de.janlucaklees.kannji.DB;
+package de.janlucaklees.kannji.services.database;
 
 import android.provider.BaseColumns;
 

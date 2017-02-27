@@ -1,10 +1,6 @@
-package de.janlucaklees.kannji.DB;
+package de.janlucaklees.kannji.services.database;
 
 import java.util.List;
-
-/**
- * Created by Jan-Luca Klees on 2017-02-19.
- */
 
 public class Word {
 

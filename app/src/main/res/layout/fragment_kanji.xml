@@ -1,0 +1,73 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".views.list.KanjiFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_kanji"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:divider="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        tools:context=".views.list.KanjiFragment">
+
+        <TextView
+            android:id="@+id/fragment_kanji_stroke_count"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/fragment_kanji_literal"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:minHeight="50dp"
+            android:textSize="40sp"/>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragment_kanji_reading_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".views.list.KanjiFragment">
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/fragment_kanji_readings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:context=".views.list.KanjiFragment">
+
+            </LinearLayout>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/fragment_kanji_meanings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:context=".views.list.KanjiFragment">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>
