@@ -13,22 +13,23 @@
 
     <TextView
         android:id="@+id/activity_quiz_yes_no_question_field"
-        android:text="TextView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:textSize="120sp"
+        android:layout_height="150dp"/>
 
     <TextView
         android:id="@+id/activity_quiz_yes_no_given_answer"
-        android:text="TextView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
         android:textSize="100sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:layout_height="150dp"/>
 
     <Button
         android:id="@+id/activity_quiz_yes_no_button_no"

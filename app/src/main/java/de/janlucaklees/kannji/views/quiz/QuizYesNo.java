@@ -150,6 +150,7 @@ public class QuizYesNo extends AppCompatActivity {
 
 		private void displayError() {
 			TextView questionView = (TextView) findViewById( R.id.activity_quiz_yes_no_question_field );
+			questionView.setTextSize( 14 );
 			questionView.setText( _error.getLocalizedMessage() );
 		}
 	}
