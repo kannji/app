@@ -13,11 +13,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import de.janlucaklees.kannji.datatypes.Kanji;
 import de.janlucaklees.kannji.values.GeneralValues;
 
 public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
+
+	private static final Random _rnd = new Random();
 
 	@Override
 	public void storeWord( String word, String reading, String translation ) {
@@ -69,6 +72,36 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 		}
 
 		return kanjiList;
+	}
+
+	public Kanji getKanji( long kanjiId ) {
+		String result = null;
+
+		try {
+			result = getJsonFromServer( "kanji/" + kanjiId );
+		} catch ( IOException e ) {
+			e.printStackTrace();
+		}
+
+		JSONObject jsonKanji = null;
+		try {
+			jsonKanji = new JSONObject( result );
+		} catch ( JSONException e ) {
+			e.printStackTrace();
+		}
+
+		Kanji kanji = null;
+		try {
+			kanji = new Kanji( jsonKanji );
+		} catch ( JSONException e ) {
+			e.printStackTrace();
+		}
+
+		return kanji;
+	}
+
+	public Kanji getRandomKanji( ) {
+		return getKanji( _rnd.nextInt( 5 ) + 1 );
 	}
 
 	private String getJsonFromServer( String path ) throws IOException {

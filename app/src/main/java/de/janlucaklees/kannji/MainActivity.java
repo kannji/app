@@ -10,6 +10,7 @@ import android.widget.EditText;
 import de.janlucaklees.kannji.views.list.AddWord;
 import de.janlucaklees.kannji.views.list.KanjiList;
 import de.janlucaklees.kannji.views.quiz.MultipleChoice;
+import de.janlucaklees.kannji.views.quiz.QuizYesNo;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,10 +29,7 @@ public class MainActivity extends AppCompatActivity {
 	 * Called when the user clicks the Start Quizz button
 	 */
 	public void startQuiz( View view ) {
-		Intent intent = new Intent( this, MultipleChoice.class );
-		EditText editText = (EditText) findViewById( R.id.edit_message );
-		String message = editText.getText().toString();
-		intent.putExtra( EXTRA_MESSAGE, message );
+		Intent intent = new Intent( this, QuizYesNo.class );
 		startActivity( intent );
 	}
 

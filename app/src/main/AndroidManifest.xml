@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.janlucaklees.kannji">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="de.janlucaklees.kannji">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -21,6 +20,8 @@
         <activity android:name=".views.quiz.MultipleChoice"/>
         <activity android:name=".views.list.AddWord"/>
         <activity android:name=".views.list.KanjiList"/>
+        <activity android:name=".views.quiz.QuizYesNo">
+        </activity>
     </application>
 
 </manifest>

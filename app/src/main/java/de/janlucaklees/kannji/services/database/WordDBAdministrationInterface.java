@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.janlucaklees.kannji.datatypes.Kanji;
+
 public class WordDBAdministrationInterface implements WordDBInterfaceV1 {
 
 	private SQLiteDatabase _db;
@@ -72,6 +74,16 @@ public class WordDBAdministrationInterface implements WordDBInterfaceV1 {
 		wordCursor.close();
 
 		return words;
+	}
+
+	@Override
+	public List<Kanji> getAllKanji() {
+		return null;
+	}
+
+	@Override
+	public Kanji getKanji( long kanjiId ) {
+		return null;
 	}
 
 	private List<String> getTranslationsForWord( long wordId ) {
