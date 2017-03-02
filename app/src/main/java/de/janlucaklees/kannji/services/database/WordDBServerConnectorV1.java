@@ -37,74 +37,38 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 		return null;
 	}
 
-	public List<Kanji> getAllKanji() {
+	public List<Kanji> getAllKanji() throws IOException, JSONException {
 
-		String result = null;
-
-		try {
-			result = getJsonFromServer( "kanji/" );
-		} catch ( IOException e ) {
-			e.printStackTrace();
-		}
-
-		JSONObject jObj = null;
-		try {
-			jObj = new JSONObject( result );
-		} catch ( JSONException e ) {
-			e.printStackTrace();
-		}
+		JSONObject jObj = getJsonFromServer( "kanji/" );
 
 		ArrayList<Kanji> kanjiList = new ArrayList<>();
 		Iterator<String> jsonIterator = jObj.keys();
 		while ( jsonIterator.hasNext() ) {
 			String key = jsonIterator.next();
 
-			JSONObject jsonKanji = null;
-			Kanji kanji = null;
-			try {
-				jsonKanji = jObj.getJSONObject( key );
-				kanji = new Kanji( jsonKanji );
-				kanjiList.add( kanji );
-			} catch ( JSONException e ) {
-				e.printStackTrace();
-			}
+			Kanji kanji = new Kanji( jObj.getJSONObject( key ) );
 
+			kanjiList.add( kanji );
 		}
 
 		return kanjiList;
 	}
 
-	public Kanji getKanji( long kanjiId ) {
+	public Kanji getKanji( long kanjiId ) throws IOException, JSONException {
 		String result = null;
 
-		try {
-			result = getJsonFromServer( "kanji/" + kanjiId );
-		} catch ( IOException e ) {
-			e.printStackTrace();
-		}
+		JSONObject jsonKanji = getJsonFromServer( "kanji/" + kanjiId );
 
-		JSONObject jsonKanji = null;
-		try {
-			jsonKanji = new JSONObject( result );
-		} catch ( JSONException e ) {
-			e.printStackTrace();
-		}
-
-		Kanji kanji = null;
-		try {
-			kanji = new Kanji( jsonKanji );
-		} catch ( JSONException e ) {
-			e.printStackTrace();
-		}
+		Kanji kanji = new Kanji( jsonKanji );
 
 		return kanji;
 	}
 
-	public Kanji getRandomKanji( ) {
+	public Kanji getRandomKanji( ) throws IOException, JSONException {
 		return getKanji( _rnd.nextInt( 5 ) + 1 );
 	}
 
-	private String getJsonFromServer( String path ) throws IOException {
+	private JSONObject getJsonFromServer( String path ) throws IOException, JSONException {
 
 		// try creating the url
 		URL url = new URL( GeneralValues.API_URL + path );
@@ -128,6 +92,6 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 		// TODO might be null
 		urlConnection.disconnect();
 
-		return result.toString();
+		return new JSONObject( result.toString() );
 	}
 }

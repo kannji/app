@@ -7,7 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +28,8 @@ public class KanjiList extends AppCompatActivity {
 	private List<Fragment> _addedListItems;
 
 	private FragmentManager _listFragmentManager;
+
+	private KanjiList _this = this;
 
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
@@ -61,6 +68,9 @@ public class KanjiList extends AppCompatActivity {
 	}
 
 	private class LoadKanjiTask extends AsyncTask<String, Void, List<Kanji>> {
+
+		private Throwable _error;
+
 		@Override
 		protected void onPreExecute() {
 
@@ -71,13 +81,25 @@ public class KanjiList extends AppCompatActivity {
 			WordDBServerConnectorV1 kanjiLoader = new WordDBServerConnectorV1();
 
 			// Getting JSON from URL
-			List<Kanji> kanjiList = kanjiLoader.getAllKanji();
+			List<Kanji> kanjiList = null;
+			try {
+				kanjiList = kanjiLoader.getAllKanji();
+			} catch ( Exception e ) {
+				_error = e;
+				return null;
+			}
 
 			return kanjiList;
 		}
 
 		@Override
 		protected void onPostExecute( List<Kanji> kanjis ) {
+
+			// if there was an error, display it stop.
+			if( _error != null ) {
+				displayError();
+				return;
+			}
 
 			clearList();
 
@@ -93,6 +115,19 @@ public class KanjiList extends AppCompatActivity {
 			}
 
 			t.commit();
+
+			_refresherView.setRefreshing( false );
+		}
+
+		private void displayError() {
+			clearList();
+
+			TextView errorView = new TextView( _this );
+			errorView.setText( _error.getLocalizedMessage() );
+
+			LinearLayout linearLayout = (LinearLayout) findViewById(R.id.activity_kanji_list_content);
+
+			linearLayout.addView( errorView );
 
 			_refresherView.setRefreshing( false );
 		}

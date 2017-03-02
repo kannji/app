@@ -1,5 +1,8 @@
 package de.janlucaklees.kannji.services.database;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 import de.janlucaklees.kannji.datatypes.Kanji;
@@ -15,7 +18,7 @@ public interface WordDBInterfaceV1 {
 
 	List<Word> getAllWords();
 
-	public List<Kanji> getAllKanji();
+	public List<Kanji> getAllKanji() throws IOException, JSONException;
 
-	public Kanji getKanji( long kanjiId );
+	public Kanji getKanji( long kanjiId ) throws IOException, JSONException;
 }

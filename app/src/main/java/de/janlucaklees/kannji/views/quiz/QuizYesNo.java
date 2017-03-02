@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -73,6 +76,9 @@ public class QuizYesNo extends AppCompatActivity {
 	}
 
 	private class LoadKanjiTask extends AsyncTask<Void, Void, List<Kanji>> {
+
+		private Throwable _error;
+
 		@Override
 		protected void onPreExecute() {
 
@@ -84,14 +90,27 @@ public class QuizYesNo extends AppCompatActivity {
 
 			// Getting JSON from URL
 			List<Kanji> kanjiList = new ArrayList<Kanji>(  );
-			kanjiList.add( kanjiLoader.getRandomKanji() );
-			kanjiList.add( kanjiLoader.getRandomKanji() );
+
+			try {
+				kanjiList.add( kanjiLoader.getRandomKanji() );
+				kanjiList.add( kanjiLoader.getRandomKanji() );
+			} catch ( Exception e ) {
+				_error = e;
+				return null;
+			}
 
 			return kanjiList;
 		}
 
 		@Override
 		protected void onPostExecute( List<Kanji> kanjis ) {
+
+			// if there was an error, display it stop.
+			if( _error != null ) {
+				displayError();
+				return;
+			}
+
 			// get question and answer
 			Kanji questionKanji = kanjis.get( 0 );
 
@@ -127,6 +146,11 @@ public class QuizYesNo extends AppCompatActivity {
 
 			TextView answerView = (TextView) findViewById( R.id.activity_quiz_yes_no_given_answer );
 			answerView.setText( answer );
+		}
+
+		private void displayError() {
+			TextView questionView = (TextView) findViewById( R.id.activity_quiz_yes_no_question_field );
+			questionView.setText( _error.getLocalizedMessage() );
 		}
 	}
 }
