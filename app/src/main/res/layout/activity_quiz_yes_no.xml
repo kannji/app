@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/activity_quiz_yes_no_given_answer"
         android:layout_width="match_parent"
-        android:textSize="100sp"
+        android:textSize="70sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

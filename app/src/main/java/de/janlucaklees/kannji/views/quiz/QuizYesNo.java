@@ -121,18 +121,18 @@ public class QuizYesNo extends AppCompatActivity {
 
 			if( rnd.nextBoolean() ) {
 
-				List<String> allReadings = new ArrayList<String>( questionKanji.getKunReadings() );
-				allReadings.addAll( questionKanji.getOnReadings() );
+				List<String> allQuestionReadings = new ArrayList<String>( questionKanji.getKunReadings() );
+				allQuestionReadings.addAll( questionKanji.getOnReadings() );
 
-				answer = allReadings.get( allReadings.size() % rnd.nextInt( ) - 1 );
+				answer = allQuestionReadings.get( rnd.nextInt( allQuestionReadings.size() ) );
 
 			} else {
 				Kanji givenAnswerKanji = kanjis.get( 1 );
 
-				List<String> allReadings = new ArrayList<String>( givenAnswerKanji.getKunReadings() );
-				allReadings.addAll( givenAnswerKanji.getOnReadings() );
+				List<String> allGivenReadings = new ArrayList<String>( givenAnswerKanji.getKunReadings() );
+				allGivenReadings.addAll( givenAnswerKanji.getOnReadings() );
 
-				answer = allReadings.get( allReadings.size() % rnd.nextInt( ) - 1 );
+				answer = allGivenReadings.get( rnd.nextInt( allGivenReadings.size() ) );
 			}
 
 			// decide if answer correct
