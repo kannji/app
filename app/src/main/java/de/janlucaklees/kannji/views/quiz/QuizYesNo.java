@@ -26,7 +26,7 @@ import de.janlucaklees.kannji.views.list.KanjiList;
 
 public class QuizYesNo extends AppCompatActivity {
 
-	private WordDBServerConnectorV1 _wdbsc;
+	public static final String BUNDLE_KEY_COMBO = "combo_count";
 
 	private boolean _answerCorrect = false;
 
@@ -38,6 +38,12 @@ public class QuizYesNo extends AppCompatActivity {
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_quiz_yes_no );
 
+		Intent intent = getIntent();
+		String comboCount = Integer.toString( intent.getIntExtra( BUNDLE_KEY_COMBO, 0 ) );
+		TextView comboView = (TextView) findViewById( R.id.activity_quiz_yes_no_combo );
+		comboView.setText( comboCount );
+
+
 		new LoadKanjiTask().execute();
 	}
 
@@ -45,15 +51,18 @@ public class QuizYesNo extends AppCompatActivity {
 
 		_yesButton = (Button) findViewById( R.id.activity_quiz_yes_no_button_yes );
 
+		Intent intent = getIntent();
+
 		if( _answerCorrect ) {
 			// congratz
 			_yesButton.setBackgroundColor( Color.GREEN );
+			intent.putExtra( BUNDLE_KEY_COMBO, intent.getIntExtra( BUNDLE_KEY_COMBO, 0 ) +1 );
 		} else {
 			// fail
 			_yesButton.setBackgroundColor( Color.RED );
+			intent.putExtra( BUNDLE_KEY_COMBO, 0 );
 		}
 
-		Intent intent = getIntent();
 		finish();
 		startActivity(intent);
 	}
@@ -62,15 +71,18 @@ public class QuizYesNo extends AppCompatActivity {
 
 		_noButton = (Button) findViewById( R.id.activity_quiz_yes_no_button_no );
 
+		Intent intent = getIntent();
+
 		if( !_answerCorrect ) {
 			// congratz
 			_noButton.setBackgroundColor( Color.GREEN );
+			intent.putExtra( BUNDLE_KEY_COMBO, intent.getIntExtra( BUNDLE_KEY_COMBO, 0 ) +1 );
 		} else {
 			// fail
 			_noButton.setBackgroundColor( Color.RED );
+			intent.putExtra( BUNDLE_KEY_COMBO, 0 );
 		}
 
-		Intent intent = getIntent();
 		finish();
 		startActivity(intent);
 	}
