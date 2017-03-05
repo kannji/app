@@ -87,16 +87,12 @@ public class Kanji {
 			String meaning = meaningJson.getString( JsonKeys.MEANINGS_MEANING );
 			String language = meaningJson.getString( JsonKeys.MEANINGS_LANGUAGE );
 
-			Log.d( "insert_meaning", language + ", " + meaning );
-
 			if ( !_meanings.containsKey( language ) ) {
 				_meanings.put( language, new HashSet<String>() );
 			}
 
 			_meanings.get( language ).add( meaning );
 		}
-
-		Log.d( "g", _meanings.toString() );
 	}
 
 	public long getId() {
