@@ -55,17 +55,15 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	}
 
 	public Kanji getKanji( long kanjiId ) throws IOException, JSONException {
-		String result = null;
-
 		JSONObject jsonKanji = getJsonFromServer( "kanji/" + kanjiId );
 
-		Kanji kanji = new Kanji( jsonKanji );
-
-		return kanji;
+		return new Kanji( jsonKanji );
 	}
 
 	public Kanji getRandomKanji( ) throws IOException, JSONException {
-		return getKanji( _rnd.nextInt( 5 ) + 1 );
+		JSONObject jsonKanji = getJsonFromServer( "kanji/random" );
+
+		return new Kanji( jsonKanji );
 	}
 
 	private JSONObject getJsonFromServer( String path ) throws IOException, JSONException {
