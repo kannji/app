@@ -12,7 +12,6 @@ import java.util.Set;
 
 import de.janlucaklees.kannji.R;
 import de.janlucaklees.kannji.datatypes.Kanji;
-import de.janlucaklees.kannji.values.JsonKeys;
 
 public class KanjiFragment extends Fragment {
 
@@ -46,8 +45,8 @@ public class KanjiFragment extends Fragment {
 			KanjiReadingFragment kanjiReadingFragment = new KanjiReadingFragment();
 
 			Bundle readingBundle = new Bundle();
-			readingBundle.putString( JsonKeys.READINGS_READING, onReading );
-			readingBundle.putString( JsonKeys.READINGS_TYPE, JsonKeys.READINGS_TYPE_ONYOMI );
+			readingBundle.putString( Kanji.READINGS_READING, onReading );
+			readingBundle.putString( Kanji.READINGS_TYPE, Kanji.READINGS_TYPE_ONYOMI );
 
 			kanjiReadingFragment.setArguments( readingBundle );
 
@@ -60,8 +59,8 @@ public class KanjiFragment extends Fragment {
 			KanjiReadingFragment kanjiReadingFragment = new KanjiReadingFragment();
 
 			Bundle readingBundle = new Bundle();
-			readingBundle.putString( JsonKeys.READINGS_READING, kunReading );
-			readingBundle.putString( JsonKeys.READINGS_TYPE, JsonKeys.READINGS_TYPE_KUNYOMI );
+			readingBundle.putString( Kanji.READINGS_READING, kunReading );
+			readingBundle.putString( Kanji.READINGS_TYPE, Kanji.READINGS_TYPE_KUNYOMI );
 
 			kanjiReadingFragment.setArguments( readingBundle );
 
@@ -77,7 +76,7 @@ public class KanjiFragment extends Fragment {
 				KanjiMeaningFragment kanjiMeaningFragment = new KanjiMeaningFragment();
 
 				Bundle readingBundle = new Bundle();
-				readingBundle.putString( JsonKeys.MEANINGS_MEANING, meaning );
+				readingBundle.putString( Kanji.MEANINGS_MEANING, meaning );
 
 				kanjiMeaningFragment.setArguments( readingBundle );
 

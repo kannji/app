@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.values.JsonKeys;
+import de.janlucaklees.kannji.datatypes.Kanji;
 
 public class KanjiMeaningFragment extends Fragment {
 
@@ -20,7 +20,7 @@ public class KanjiMeaningFragment extends Fragment {
 		View rootView = inflater.inflate( R.layout.fragment_kanji_meaning, container, false );
 
 		// insert meaning
-		String meaningText = getArguments().getString( JsonKeys.MEANINGS_MEANING );
+		String meaningText = getArguments().getString( Kanji.MEANINGS_MEANING );
 		TextView meaningView = (TextView) rootView.findViewById( R.id.fragment_kanji_meaning_meaning );
 		meaningView.setText( meaningText );
 

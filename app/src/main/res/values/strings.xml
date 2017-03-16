@@ -1,15 +1,13 @@
 <resources>
     <string name="app_name">Kannji</string>
     <string name="title_activity_multiple_choice">MultipleChoice</string>
-    <string name="message">漢字</string>
-    <string name="edit_message">Nachricht eingeben</string>
-    <string name="start_quiz">Quiz starten</string>
+    <string name="start_quiz">Quiz</string>
     <string name="word">Word in Kanji</string>
     <string name="reading">Kana reading</string>
     <string name="translation">Translation</string>
-    <string name="add_button">add word</string>
     <string name="btn_startAddingWords">add words</string>
-    <string name="btn_viewWords">view words</string>
+    <string name="btn_viewLists">Lists</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="action_settings">Settings</string>
 </resources>

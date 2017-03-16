@@ -41,7 +41,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:onClick="addWord"
-        android:text="@string/add_button"/>
+        android:text="@string/btn_startAddingWords"/>
 
     <EditText
         android:id="@+id/translation"

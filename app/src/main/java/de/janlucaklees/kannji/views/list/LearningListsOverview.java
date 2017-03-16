@@ -1,5 +1,6 @@
 package de.janlucaklees.kannji.views.list;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,10 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.datatypes.Kanji;
+import de.janlucaklees.kannji.datatypes.LearningList;
+import de.janlucaklees.kannji.datatypes.LearningListBrief;
 import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
 
-public class KanjiList extends AppCompatActivity {
+public class LearningListsOverview extends AppCompatActivity implements LearningListBriefFragment.onLearningListSelectionListener {
 
 	private WordDBServerConnectorV1 _wdbsc;
 	private SwipeRefreshLayout _refresherView;
@@ -26,7 +28,7 @@ public class KanjiList extends AppCompatActivity {
 
 	private FragmentManager _listFragmentManager;
 
-	private KanjiList _this = this;
+	private LearningListsOverview _this = this;
 
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
@@ -37,16 +39,16 @@ public class KanjiList extends AppCompatActivity {
 
 		_listFragmentManager = getSupportFragmentManager();
 
-		new LoadKanjiTask().execute();
+		new LoadLearningsListsBrief().execute();
 
 		_refresherView = (SwipeRefreshLayout) findViewById( R.id.activity_kanji_list_refresher );
 
 		_refresherView.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
-				new LoadKanjiTask().execute();
+				new LoadLearningsListsBrief().execute();
 				_refresherView.setRefreshing( true );
-				new LoadKanjiTask().execute();
+				new LoadLearningsListsBrief().execute();
 			}
 		} );
 
@@ -64,7 +66,15 @@ public class KanjiList extends AppCompatActivity {
 		_addedListItems.clear();
 	}
 
-	private class LoadKanjiTask extends AsyncTask<String, Void, List<Kanji>> {
+	@Override
+	public void onLearningListSelection( long learningListId, String learningListName ) {
+		Intent intent = new Intent( this, LearningListDetail.class );
+		intent.putExtra( LearningList.ID, learningListId );
+		intent.putExtra( LearningList.NAME, learningListName );
+		startActivity( intent );
+	}
+
+	private class LoadLearningsListsBrief extends AsyncTask<String, Void, List<LearningListBrief>> {
 
 		private Throwable _error;
 
@@ -74,23 +84,23 @@ public class KanjiList extends AppCompatActivity {
 		}
 
 		@Override
-		protected List<Kanji> doInBackground( String... args ) {
+		protected List<LearningListBrief> doInBackground( String... args ) {
 			WordDBServerConnectorV1 kanjiLoader = new WordDBServerConnectorV1();
 
 			// Getting JSON from URL
-			List<Kanji> kanjiList = null;
+			List<LearningListBrief> learningListsBrief = null;
 			try {
-				kanjiList = kanjiLoader.getAllKanji();
+				learningListsBrief = kanjiLoader.getAllListsBrief();
 			} catch ( Exception e ) {
 				_error = e;
 				return null;
 			}
 
-			return kanjiList;
+			return learningListsBrief;
 		}
 
 		@Override
-		protected void onPostExecute( List<Kanji> kanjis ) {
+		protected void onPostExecute( List<LearningListBrief> LearningListsBrief ) {
 
 			// if there was an error, display it stop.
 			if ( _error != null ) {
@@ -102,13 +112,12 @@ public class KanjiList extends AppCompatActivity {
 
 			FragmentTransaction t = _listFragmentManager.beginTransaction();
 
-			for ( Kanji kanji : kanjis ) {
+			for ( LearningListBrief learningListBrief : LearningListsBrief ) {
 
-				KanjiFragment kanjiFragment = new KanjiFragment();
-				kanjiFragment.setKanji( kanji );
+				LearningListBriefFragment leraningListBriefFragment = LearningListBriefFragment.newInstance( learningListBrief.getId(), learningListBrief.getName() );
 
-				_addedListItems.add( kanjiFragment );
-				t.add( R.id.activity_kanji_list_content, kanjiFragment );
+				_addedListItems.add( leraningListBriefFragment );
+				t.add( R.id.activity_kanji_list_content, leraningListBriefFragment );
 			}
 
 			t.commit();
@@ -120,7 +129,7 @@ public class KanjiList extends AppCompatActivity {
 			clearList();
 
 			TextView errorView = new TextView( _this );
-			errorView.setText( _error.getLocalizedMessage() );
+			errorView.setText( "Error:" + _error.getMessage() + ". Cause:" + _error.getCause() );
 
 			LinearLayout linearLayout = (LinearLayout) findViewById( R.id.activity_kanji_list_content );
 

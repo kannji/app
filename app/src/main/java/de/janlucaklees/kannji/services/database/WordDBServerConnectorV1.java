@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Random;
 
 import de.janlucaklees.kannji.datatypes.Kanji;
+import de.janlucaklees.kannji.datatypes.LearningList;
+import de.janlucaklees.kannji.datatypes.LearningListBrief;
 import de.janlucaklees.kannji.values.GeneralValues;
 
 public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
@@ -60,10 +62,33 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 		return new Kanji( jsonKanji );
 	}
 
-	public Kanji getRandomKanji( ) throws IOException, JSONException {
+	public Kanji getRandomKanji() throws IOException, JSONException {
 		JSONObject jsonKanji = getJsonFromServer( "kanji/random" );
 
 		return new Kanji( jsonKanji );
+	}
+
+	public LearningList getList( long id ) throws IOException, JSONException {
+		JSONObject jsonList = getJsonFromServer( "lists/" + id );
+
+		return new LearningList( jsonList );
+	}
+
+	public List<LearningListBrief> getAllListsBrief() throws IOException, JSONException {
+		// TODO not really all lists, just the top ten or so; pagination would be useful
+		JSONObject learningListsJson = getJsonFromServer( "lists/all" );
+
+		ArrayList<LearningListBrief> learningListsBrief = new ArrayList<>();
+		Iterator<String> jsonIterator = learningListsJson.keys();
+		while ( jsonIterator.hasNext() ) {
+			String key = jsonIterator.next();
+
+			LearningListBrief learningListBrief = new LearningListBrief( learningListsJson.getJSONObject( key ) );
+
+			learningListsBrief.add( learningListBrief );
+		}
+
+		return learningListsBrief;
 	}
 
 	private JSONObject getJsonFromServer( String path ) throws IOException, JSONException {

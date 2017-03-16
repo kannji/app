@@ -1,7 +1,5 @@
 package de.janlucaklees.kannji.datatypes;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,16 +11,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import de.janlucaklees.kannji.values.JsonKeys;
+public class Kanji extends LearningEntry {
 
-public class Kanji {
+	// JSON keys
+	public static final String KANJI_ID = "kanji_id";
+	public static final String LITERAL = "literal";
+	public static final String STROKE_COUNT = "stroke_count";
 
+	public static final String READINGS = "readings";
+	public static final String READINGS_TYPE = "type";
+	public static final String READINGS_TYPE_ONYOMI = "onyomi";
+	public static final String READINGS_TYPE_KUNYOMI = "kunyomi";
+	public static final String READINGS_TYPE_NANORI = "nanori";
+	public static final String READINGS_READING = "reading";
+
+	public static final String MEANINGS = "meanings";
+	public static final String MEANINGS_MEANING = "meaning";
+	public static final String MEANINGS_LANGUAGE = "language";
+
+	// Kanji Data
 	private long _id;
-
 	private Character _literal;
-
 	private byte _stroke_count;
-
 	private List<String> _onReadings;
 	private List<String> _kunReadings;
 	private List<String> _nanoriReadings;
@@ -32,9 +42,9 @@ public class Kanji {
 	// TODO factory schema implementieren
 	public Kanji( JSONObject kanjiJson ) throws JSONException {
 		// extract basic information
-		_id = kanjiJson.getLong( JsonKeys.KANJI_ID );
-		_literal = kanjiJson.getString( JsonKeys.LITERAL ).toCharArray()[ 0 ];
-		_stroke_count = (byte) kanjiJson.getInt( JsonKeys.STROKE_COUNT );
+		_id = kanjiJson.getLong( KANJI_ID );
+		_literal = kanjiJson.getString( LITERAL ).toCharArray()[ 0 ];
+		_stroke_count = (byte) kanjiJson.getInt( STROKE_COUNT );
 
 		// extract readings
 		extractReadings( kanjiJson );
@@ -48,7 +58,7 @@ public class Kanji {
 		_kunReadings = new ArrayList<>();
 		_nanoriReadings = new ArrayList<>();
 
-		JSONObject readingsJson = kanjiJson.getJSONObject( JsonKeys.READINGS );
+		JSONObject readingsJson = kanjiJson.getJSONObject( READINGS );
 
 		Iterator<String> readingsIterator = readingsJson.keys();
 		while ( readingsIterator.hasNext() ) {
@@ -56,18 +66,18 @@ public class Kanji {
 
 			JSONObject readingJson = readingsJson.getJSONObject( key );
 
-			switch ( readingJson.getString( JsonKeys.READINGS_TYPE ) ) {
+			switch ( readingJson.getString( READINGS_TYPE ) ) {
 
-				case JsonKeys.READINGS_TYPE_ONYOMI:
-					_onReadings.add( readingJson.getString( JsonKeys.READINGS_READING ) );
+				case READINGS_TYPE_ONYOMI:
+					_onReadings.add( readingJson.getString( READINGS_READING ) );
 					break;
 
-				case JsonKeys.READINGS_TYPE_KUNYOMI:
-					_kunReadings.add( readingJson.getString( JsonKeys.READINGS_READING ) );
+				case READINGS_TYPE_KUNYOMI:
+					_kunReadings.add( readingJson.getString( READINGS_READING ) );
 					break;
 
-				case JsonKeys.READINGS_TYPE_NANORI:
-					_nanoriReadings.add( readingJson.getString( JsonKeys.READINGS_READING ) );
+				case READINGS_TYPE_NANORI:
+					_nanoriReadings.add( readingJson.getString( READINGS_READING ) );
 					break;
 			}
 		}
@@ -76,7 +86,7 @@ public class Kanji {
 	private void extractMeanings( JSONObject kanjiJson ) throws JSONException {
 		_meanings = new HashMap<>();
 
-		JSONObject meaningsJson = kanjiJson.getJSONObject( JsonKeys.MEANINGS );
+		JSONObject meaningsJson = kanjiJson.getJSONObject( MEANINGS );
 
 		Iterator<String> meaningsIterator = meaningsJson.keys();
 		while ( meaningsIterator.hasNext() ) {
@@ -84,8 +94,8 @@ public class Kanji {
 
 			JSONObject meaningJson = meaningsJson.getJSONObject( key );
 
-			String meaning = meaningJson.getString( JsonKeys.MEANINGS_MEANING );
-			String language = meaningJson.getString( JsonKeys.MEANINGS_LANGUAGE );
+			String meaning = meaningJson.getString( MEANINGS_MEANING );
+			String language = meaningJson.getString( MEANINGS_LANGUAGE );
 
 			if ( !_meanings.containsKey( language ) ) {
 				_meanings.put( language, new HashSet<String>() );

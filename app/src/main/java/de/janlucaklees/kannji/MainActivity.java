@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 
-import de.janlucaklees.kannji.views.list.AddWord;
-import de.janlucaklees.kannji.views.list.KanjiList;
-import de.janlucaklees.kannji.views.quiz.MultipleChoice;
+import de.janlucaklees.kannji.views.list.LearningListsOverview;
 import de.janlucaklees.kannji.views.quiz.QuizYesNo;
 
 
@@ -25,21 +22,13 @@ public class MainActivity extends AppCompatActivity {
 		_context = getApplicationContext();
 	}
 
-	/**
-	 * Called when the user clicks the Start Quizz button
-	 */
 	public void startQuiz( View view ) {
 		Intent intent = new Intent( this, QuizYesNo.class );
 		startActivity( intent );
 	}
 
-	public void startAddingWords( View view ) {
-		Intent intent = new Intent( this, AddWord.class );
-		startActivity( intent );
-	}
-
 	public void viewWords( View view ) {
-		Intent intent = new Intent( this, KanjiList.class );
+		Intent intent = new Intent( this, LearningListsOverview.class );
 		startActivity( intent );
 	}
 }

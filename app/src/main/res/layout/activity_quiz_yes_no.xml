@@ -32,35 +32,31 @@
         android:layout_height="150dp"/>
 
     <Button
-        android:id="@+id/activity_quiz_yes_no_button_no"
-        android:text="@string/no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="47dp"
-        android:onClick="noButtonClicked"/>
-
-    <Button
         android:id="@+id/activity_quiz_yes_no_button_yes"
         android:text="@string/yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/activity_quiz_yes_no_button_no"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:onClick="yesButtonClicked"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="49dp"
-        android:layout_marginEnd="49dp"
-        android:onClick="yesButtonClicked"/>
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:id="@+id/activity_quiz_yes_no_combo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_alignBaseline="@+id/activity_quiz_yes_no_button_yes"
+        android:layout_alignBottom="@+id/activity_quiz_yes_no_button_yes"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/activity_quiz_yes_no_button_no"
+        android:text="@string/no"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:onClick="noButtonClicked"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="12sp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>
