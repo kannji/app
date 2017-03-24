@@ -12,21 +12,21 @@ import de.janlucaklees.kannji.views.quiz.QuizYesNo;
 
 public class MainActivity extends AppCompatActivity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-
+	
 	private Context _context;
-
+	
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.activity_main );
 		_context = getApplicationContext();
 	}
-
+	
 	public void startQuiz( View view ) {
 		Intent intent = new Intent( this, QuizYesNo.class );
 		startActivity( intent );
 	}
-
+	
 	public void viewWords( View view ) {
 		Intent intent = new Intent( this, LearningListsOverview.class );
 		startActivity( intent );

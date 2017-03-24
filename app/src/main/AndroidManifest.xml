@@ -17,8 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.quiz.MultipleChoice"/>
-        <activity android:name=".views.list.AddWord"/>
-        <activity android:name=".views.list.KanjiList"/>
         <activity android:name=".views.list.LearningListsOverview"/>
         <activity android:name=".views.quiz.QuizYesNo">
         </activity>
