@@ -1,33 +1,38 @@
 package de.janlucaklees.kannji;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import de.janlucaklees.kannji.views.DrawerActivity;
 import de.janlucaklees.kannji.views.list.LearningListsOverview;
 import de.janlucaklees.kannji.views.quiz.QuizYesNo;
 
-
-public class MainActivity extends AppCompatActivity {
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-	
-	private Context _context;
-	
+/**
+ * The activity that welcomes the user when the app is started.
+ * It extends the Drawer activity so that it has the default drawer.
+ */
+public class WelcomeActivity extends DrawerActivity {
 	@Override
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
-		setContentView( R.layout.activity_main );
-		_context = getApplicationContext();
+		setContentView( R.layout.content_welcome );
 	}
 	
+	/**
+	 * Method called when user clicks on the Quiz button.
+	 * It starts the yes-no quiz activity.
+	 */
 	public void startQuiz( View view ) {
 		Intent intent = new Intent( this, QuizYesNo.class );
 		startActivity( intent );
 	}
 	
-	public void viewWords( View view ) {
+	/**
+	 * Method called when user clicks on the List button.
+	 * It starts the learning list overview activity.
+	 */
+	public void viewLearningLists( View view ) {
 		Intent intent = new Intent( this, LearningListsOverview.class );
 		startActivity( intent );
 	}
