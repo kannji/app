@@ -33,7 +33,7 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	
 	@Override
 	public Kanji getRandomKanji() throws IOException, JSONException {
-		JSONObject jsonKanji = getJsonFromServer( "kanji/random" );
+		JSONObject jsonKanji = getJsonFromServer( "kanji/random/" );
 		
 		return new Kanji( jsonKanji );
 	}
@@ -48,7 +48,7 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	@Override
 	public List<LearningListBrief> getAllListsBrief() throws IOException, JSONException {
 		// TODO not really all lists, just the top ten or so; pagination would be useful
-		JSONObject learningListsJson = getJsonFromServer( "lists/all" );
+		JSONObject learningListsJson = getJsonFromServer( "lists/all/" );
 		
 		ArrayList<LearningListBrief> learningListsBrief = new ArrayList<>();
 		Iterator<String> jsonIterator = learningListsJson.keys();
