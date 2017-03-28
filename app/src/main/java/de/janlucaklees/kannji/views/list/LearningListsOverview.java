@@ -45,7 +45,6 @@ public class LearningListsOverview extends DrawerActivity implements LearningLis
 		_refresherView.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
-				new LoadLearningsListsBrief().execute();
 				_refresherView.setRefreshing( true );
 				new LoadLearningsListsBrief().execute();
 			}
