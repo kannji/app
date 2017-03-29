@@ -25,28 +25,28 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	
 	@Override
 	public Kanji getKanji( long kanjiId ) throws IOException, JSONException {
-		JSONObject jsonKanji = getJsonFromServer( "kanji/" + kanjiId );
+		JSONObject jsonKanji = getJsonFromServer( "/kanji/" + kanjiId );
 		
 		return new Kanji( jsonKanji );
 	}
 	
 	@Override
 	public Kanji getRandomKanji() throws IOException, JSONException {
-		JSONObject jsonKanji = getJsonFromServer( "kanji/random/" );
+		JSONObject jsonKanji = getJsonFromServer( "/kanji/random/" );
 		
 		return new Kanji( jsonKanji );
 	}
 	
 	@Override
 	public LearningList getList( long id ) throws IOException, JSONException {
-		JSONObject jsonList = getJsonFromServer( "lists/" + id );
+		JSONObject jsonList = getJsonFromServer( "/lists/" + id );
 		
 		return new LearningList( jsonList );
 	}
 	
 	@Override
 	public List<LearningListBrief> getAllListsBrief() throws IOException, JSONException {
-		JSONObject learningListsJson = getJsonFromServer( "lists/all/" );
+		JSONObject learningListsJson = getJsonFromServer( "/lists/all/" );
 		
 		ArrayList<LearningListBrief> learningListsBrief = new ArrayList<>();
 		Iterator<String> jsonIterator = learningListsJson.keys();
