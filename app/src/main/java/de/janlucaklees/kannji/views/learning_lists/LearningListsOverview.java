@@ -16,7 +16,8 @@ import java.util.List;
 import de.janlucaklees.kannji.R;
 import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
 import de.janlucaklees.kannji.datatypes.learning_lists.LearningListBrief;
-import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
+import de.janlucaklees.kannji.services.database.ApiV2Connector;
+import de.janlucaklees.kannji.services.database.ApiV2Interface;
 import de.janlucaklees.kannji.views.DrawerActivity;
 
 public class LearningListsOverview extends DrawerActivity implements LearningListBriefFragment.onLearningListSelectionListener {
@@ -83,12 +84,12 @@ public class LearningListsOverview extends DrawerActivity implements LearningLis
 		
 		@Override
 		protected List<LearningListBrief> doInBackground( String... args ) {
-			WordDBServerConnectorV1 kanjiLoader = new WordDBServerConnectorV1();
+			ApiV2Interface apiConnector = new ApiV2Connector();
 			
 			// Getting JSON from URL
 			List<LearningListBrief> learningListsBrief = null;
 			try {
-				learningListsBrief = kanjiLoader.getAllListsBrief();
+				learningListsBrief = apiConnector.getAllLearningListsBrief();
 			} catch ( Exception e ) {
 				_error = e;
 				return null;
@@ -124,6 +125,8 @@ public class LearningListsOverview extends DrawerActivity implements LearningLis
 		}
 		
 		private void displayError() {
+			_error.printStackTrace();
+			
 			clearList();
 			
 			TextView errorView = new TextView( _this );

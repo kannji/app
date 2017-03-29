@@ -14,7 +14,8 @@ import java.util.Random;
 
 import de.janlucaklees.kannji.R;
 import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
-import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
+import de.janlucaklees.kannji.services.database.ApiV2Connector;
+import de.janlucaklees.kannji.services.database.ApiV2Interface;
 import de.janlucaklees.kannji.views.DrawerActivity;
 
 public class QuizYesNo extends DrawerActivity {
@@ -90,14 +91,15 @@ public class QuizYesNo extends DrawerActivity {
 		
 		@Override
 		protected List<Kanji> doInBackground( Void... args ) {
-			WordDBServerConnectorV1 kanjiLoader = new WordDBServerConnectorV1();
+			ApiV2Interface apiConnector = new ApiV2Connector();
 			
 			// Getting JSON from URL
 			List<Kanji> kanjiList = new ArrayList<Kanji>();
 			
 			try {
-				kanjiList.add( kanjiLoader.getRandomKanji() );
-				kanjiList.add( kanjiLoader.getRandomKanji() );
+				// TODO make selection what list to learn
+				kanjiList.add( apiConnector.getRandomKanjiFromLearningList( 3 ) );
+				kanjiList.add( apiConnector.getRandomKanjiFromLearningList( 3 ) );
 			} catch ( Exception e ) {
 				_error = e;
 				return null;
@@ -156,6 +158,8 @@ public class QuizYesNo extends DrawerActivity {
 		}
 		
 		private void displayError() {
+			_error.printStackTrace();
+			
 			TextView questionView = (TextView) findViewById( R.id.activity_quiz_yes_no_question_field );
 			questionView.setTextSize( 14 );
 			questionView.setText( _error.getLocalizedMessage() );

@@ -19,7 +19,8 @@ import de.janlucaklees.kannji.R;
 import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
 import de.janlucaklees.kannji.datatypes.learning_entries.LearningEntry;
 import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
-import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
+import de.janlucaklees.kannji.services.database.ApiV2Connector;
+import de.janlucaklees.kannji.services.database.ApiV2Interface;
 import de.janlucaklees.kannji.views.DrawerActivity;
 import de.janlucaklees.kannji.views.learning_entries.kanji.KanjiFragment;
 
@@ -83,12 +84,12 @@ public class LearningListDetail extends DrawerActivity {
 		
 		@Override
 		protected LearningList doInBackground( Long... args ) {
-			WordDBServerConnectorV1 serverConnector = new WordDBServerConnectorV1();
+			ApiV2Interface apiConnector = new ApiV2Connector();
 			
 			// Getting JSON from URL
 			LearningList learningList = null;
 			try {
-				learningList = serverConnector.getList( args[ 0 ] );
+				learningList = apiConnector.getLearningListDetail( args[ 0 ] );
 			} catch ( Exception e ) {
 				_error = e;
 				return null;
@@ -130,12 +131,14 @@ public class LearningListDetail extends DrawerActivity {
 		}
 		
 		private void displayError() {
+			_error.printStackTrace();
+			
 			clearList();
 			
 			TextView errorView = new TextView( _this );
 			errorView.setText( _error.getLocalizedMessage() );
 			
-			LinearLayout linearLayout = (LinearLayout) findViewById( R.id.activity_kanji_list_content );
+			LinearLayout linearLayout = (LinearLayout) findViewById( R.id.content_learning_list_detail_inner );
 			
 			linearLayout.addView( errorView );
 		}
