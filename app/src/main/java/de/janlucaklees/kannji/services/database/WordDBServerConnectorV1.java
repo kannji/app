@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
 import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
@@ -22,7 +21,7 @@ import de.janlucaklees.kannji.values.GeneralValues;
 
 public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	
-	private static final Random _rnd = new Random();
+	public static final String API_V1_URL = GeneralValues.API_URL + "/v1";
 	
 	@Override
 	public Kanji getKanji( long kanjiId ) throws IOException, JSONException {
@@ -47,7 +46,6 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	
 	@Override
 	public List<LearningListBrief> getAllListsBrief() throws IOException, JSONException {
-		// TODO not really all lists, just the top ten or so; pagination would be useful
 		JSONObject learningListsJson = getJsonFromServer( "lists/all/" );
 		
 		ArrayList<LearningListBrief> learningListsBrief = new ArrayList<>();
@@ -66,7 +64,7 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 	private JSONObject getJsonFromServer( String path ) throws IOException, JSONException {
 		
 		// try creating the url
-		URL url = new URL( GeneralValues.API_URL + path );
+		URL url = new URL( API_V1_URL + path );
 		
 		// make url connection
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -84,7 +82,6 @@ public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {
 		}
 		
 		// disconnect
-		// TODO might be null
 		urlConnection.disconnect();
 		
 		return new JSONObject( result.toString() );
