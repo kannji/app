@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:divider="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".views.list.KanjiFragment">
+    tools:context=".views.learning_entries.kanji.KanjiFragment">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:divider="@color/colorPrimaryDark"
         android:orientation="horizontal"
-        tools:context=".views.list.KanjiFragment">
+        tools:context=".views.learning_entries.kanji.KanjiFragment">
 
         <TextView
             android:id="@+id/fragment_kanji_stroke_count"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".views.list.KanjiFragment">
+            tools:context=".views.learning_entries.kanji.KanjiFragment">
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                tools:context=".views.list.KanjiFragment">
+                tools:context=".views.learning_entries.kanji.KanjiFragment">
 
             </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                tools:context=".views.list.KanjiFragment">
+                tools:context=".views.learning_entries.kanji.KanjiFragment">
 
             </LinearLayout>
 

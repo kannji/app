@@ -1,4 +1,4 @@
-package de.janlucaklees.kannji.views.list;
+package de.janlucaklees.kannji.views.learning_lists;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,11 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.datatypes.Kanji;
-import de.janlucaklees.kannji.datatypes.LearningEntry;
-import de.janlucaklees.kannji.datatypes.LearningList;
+import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
+import de.janlucaklees.kannji.datatypes.learning_entries.LearningEntry;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
 import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
 import de.janlucaklees.kannji.views.DrawerActivity;
+import de.janlucaklees.kannji.views.learning_entries.kanji.KanjiFragment;
 
 public class LearningListDetail extends DrawerActivity {
 	

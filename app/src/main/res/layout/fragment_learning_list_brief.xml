@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:divider="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context=".views.list.KanjiFragment">
+    tools:context=".views.learning_entries.kanji.KanjiFragment">
 
     <RelativeLayout
         android:id="@+id/fragment_learning_list_brief"
@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:divider="@color/colorPrimaryDark"
         android:orientation="horizontal"
-        tools:context=".views.list.KanjiFragment">
+        tools:context=".views.learning_entries.kanji.KanjiFragment">
 
         <TextView
             android:id="@+id/fragment_learning_list_brief_name"

@@ -15,9 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import de.janlucaklees.kannji.datatypes.Kanji;
-import de.janlucaklees.kannji.datatypes.LearningList;
-import de.janlucaklees.kannji.datatypes.LearningListBrief;
+import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningListBrief;
 import de.janlucaklees.kannji.values.GeneralValues;
 
 public class WordDBServerConnectorV1 implements WordDBInterfaceV1 {

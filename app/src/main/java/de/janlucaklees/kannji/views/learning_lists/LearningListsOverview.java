@@ -1,4 +1,4 @@
-package de.janlucaklees.kannji.views.list;
+package de.janlucaklees.kannji.views.learning_lists;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.datatypes.LearningList;
-import de.janlucaklees.kannji.datatypes.LearningListBrief;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningListBrief;
 import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
 import de.janlucaklees.kannji.views.DrawerActivity;
 

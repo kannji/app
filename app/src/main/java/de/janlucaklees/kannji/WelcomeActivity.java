@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import de.janlucaklees.kannji.views.DrawerActivity;
-import de.janlucaklees.kannji.views.list.LearningListsOverview;
-import de.janlucaklees.kannji.views.quiz.QuizYesNo;
+import de.janlucaklees.kannji.views.learning_lists.LearningListsOverview;
+import de.janlucaklees.kannji.views.quizzes.QuizYesNo;
 
 /**
  * The activity that welcomes the user when the app is started.

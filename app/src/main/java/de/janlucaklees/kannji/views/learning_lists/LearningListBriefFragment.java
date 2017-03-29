@@ -1,4 +1,4 @@
-package de.janlucaklees.kannji.views.list;
+package de.janlucaklees.kannji.views.learning_lists;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.datatypes.LearningList;
+import de.janlucaklees.kannji.datatypes.learning_lists.LearningList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,16 +20,16 @@ import de.janlucaklees.kannji.datatypes.LearningList;
  * create an instance of this fragment.
  */
 public class LearningListBriefFragment extends Fragment {
-
+	
 	private long _id;
 	private String _name;
-
+	
 	private onLearningListSelectionListener learningListSelectionListener;
-
+	
 	public LearningListBriefFragment() {
 		// Required empty public constructor
 	}
-
+	
 	/**
 	 * Use this factory method to create a new instance of
 	 * this fragment using the provided parameters.
@@ -46,7 +46,7 @@ public class LearningListBriefFragment extends Fragment {
 		fragment.setArguments( args );
 		return fragment;
 	}
-
+	
 	@Override
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
@@ -55,17 +55,17 @@ public class LearningListBriefFragment extends Fragment {
 			_name = getArguments().getString( LearningList.NAME );
 		}
 	}
-
+	
 	@Override
 	public View onCreateView( LayoutInflater inflater, ViewGroup container,
 	                          Bundle savedInstanceState ) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate( R.layout.fragment_learning_list_brief, container, false );
-
+		
 		// insert stroke count
 		TextView nameView = (TextView) rootView.findViewById( R.id.fragment_learning_list_brief_name );
 		nameView.setText( _name );
-
+		
 		// add click listener
 		View ev = rootView.findViewById( R.id.fragment_learning_list_brief );
 		ev.setOnClickListener( new View.OnClickListener() {
@@ -76,10 +76,10 @@ public class LearningListBriefFragment extends Fragment {
 				}
 			}
 		} );
-
+		
 		return rootView;
 	}
-
+	
 	@Override
 	public void onAttach( Context context ) {
 		super.onAttach( context );
@@ -90,13 +90,13 @@ public class LearningListBriefFragment extends Fragment {
 					+ " must implement onLearningListSelectionListener" );
 		}
 	}
-
+	
 	@Override
 	public void onDetach() {
 		super.onDetach();
 		learningListSelectionListener = null;
 	}
-
+	
 	/**
 	 * This interface must be implemented by activities that contain this
 	 * fragment to allow an interaction in this fragment to be communicated

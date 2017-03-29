@@ -1,4 +1,4 @@
-package de.janlucaklees.kannji.views.quiz;
+package de.janlucaklees.kannji.views.quizzes;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import de.janlucaklees.kannji.R;
-import de.janlucaklees.kannji.datatypes.Kanji;
+import de.janlucaklees.kannji.datatypes.learning_entries.Kanji;
 import de.janlucaklees.kannji.services.database.WordDBServerConnectorV1;
 import de.janlucaklees.kannji.views.DrawerActivity;
 

@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginRight="6dp"
-    tools:context="de.janlucaklees.kannji.views.list.KanjiReadingFragment">
+    tools:context="de.janlucaklees.kannji.views.learning_entries.kanji.KanjiReadingFragment">
 
     <TextView
         android:id="@+id/fragment_kanji_meaning_meaning"
