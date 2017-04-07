@@ -112,7 +112,7 @@ public class ApiV3OAuthConnector implements ApiV3OAuthConnectorInterface {
 		
 		editor.putString( AUTHENTICATION_ACCESS_TOKEN_KEY, jsonResponse.getString( AUTHENTICATION_ACCESS_TOKEN_KEY ) );
 		editor.putString( AUTHENTICATION_REFRESH_TOKEN_KEY, jsonResponse.getString( AUTHENTICATION_REFRESH_TOKEN_KEY ) );
-		editor.putInt( AUTHENTICATION_ACCESS_TOKEN_KEY, jsonResponse.getInt( AUTHENTICATION_EXPIRES_IN_KEY ) );
+		editor.putInt( AUTHENTICATION_EXPIRES_IN_KEY, jsonResponse.getInt( AUTHENTICATION_EXPIRES_IN_KEY ) );
 		
 		editor.apply();
 	}
