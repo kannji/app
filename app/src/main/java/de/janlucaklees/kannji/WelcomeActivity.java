@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import de.janlucaklees.kannji.views.DrawerActivity;
+import de.janlucaklees.kannji.views.LoginActivity;
 import de.janlucaklees.kannji.views.learning_lists.LearningListsOverview;
 import de.janlucaklees.kannji.views.quizzes.QuizYesNo;
 
@@ -17,6 +20,7 @@ public class WelcomeActivity extends DrawerActivity {
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.content_welcome );
+		JodaTimeAndroid.init( this );
 	}
 	
 	/**
@@ -34,6 +38,15 @@ public class WelcomeActivity extends DrawerActivity {
 	 */
 	public void viewLearningLists( View view ) {
 		Intent intent = new Intent( this, LearningListsOverview.class );
+		startActivity( intent );
+	}
+	
+	/**
+	 * Method called when user clicks on the List button.
+	 * It starts the learning list overview activity.
+	 */
+	public void login( View view ) {
+		Intent intent = new Intent( this, LoginActivity.class );
 		startActivity( intent );
 	}
 }
