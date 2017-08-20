@@ -2,6 +2,7 @@
 /captures
 .externalNativeBuild
 /build
+/app/build
 
 # Generated files
 bin/
