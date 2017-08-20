@@ -1,20 +1,45 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "de.janlucaklees.kannji"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        development {
+            storeFile file("development.jks")
+            storePassword "qwer1234"
+            keyAlias "development-key"
+            keyPassword "qwer1234"
+        }
+    }
+
     buildTypes {
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.development
+            buildConfigField "String", "API_SERVER_URL", '"https://api.dontusethisinproduction.fail"'
+            buildConfigField "String", "CLIENT_ID", '"kannji-app"'
+            buildConfigField "String", "CLIENT_SECRET", '"kc7CeHUZk4PaDrdSXt5vAcjlzoj9et4EMhZVsoJR3spbfjrCjQiL27p0Wf1FAsNypQPtFIgKKkTG1WcilKZLtscVlxahw9EfURIm3rnsCkjxxw15tHfadpkI0cP98wXJ"'
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.development
+            buildConfigField "String", "API_SERVER_URL", '"http://192.168.1.11:8080"'
+            buildConfigField "String", "CLIENT_ID", '"kannji-app"'
+            buildConfigField "String", "CLIENT_SECRET", '"kannji-secret"'
         }
     }
 }
@@ -24,8 +49,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
 }
