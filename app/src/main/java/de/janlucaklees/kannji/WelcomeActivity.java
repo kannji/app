@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
 import de.janlucaklees.kannji.views.DrawerActivity;
 import de.janlucaklees.kannji.views.LoginActivity;
 import de.janlucaklees.kannji.views.learning_lists.LearningListsOverview;
@@ -20,7 +18,6 @@ public class WelcomeActivity extends DrawerActivity {
 	protected void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		setContentView( R.layout.content_welcome );
-		JodaTimeAndroid.init( this );
 	}
 	
 	/**
